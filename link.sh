@@ -2,10 +2,10 @@
 
 set -eu
 
-# Use Perl for base64 decoding
-# because the base64 command decoding option is not compatible between BusyBox and BSD
+# base64 command decoding option is not compatible between BusyBox and BSD
+# Try both options
 base64_decode() {
-  perl -MMIME::Base64 -ne 'print decode_base64($_)'
+  base64 -d 2>/dev/null || base64 -D 2>/dev/null
 }
 
 # Build JSON payload via jq and printf

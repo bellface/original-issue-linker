@@ -135,12 +135,6 @@ if [[ ! "$START_PAGE" =~ ^[1-9][0-9]*$ ]]; then
   exit 1
 fi
 
-# Validate that START_PAGE is numeric and positive
-if [[ ! "$START_PAGE" =~ ^[1-9][0-9]*$ ]]; then
-  >&2 echo 'The environment variable "START_PAGE" must be a positive integer.'
-  exit 1
-fi
-
 # Validate that TITLE_FORMAT contains one placeholder
 if [[ $(awk -F'%s' '{print NF-1}' <<< "$TITLE_FORMAT") -ne 1 ]]; then
   >&2 echo 'The environment variable "TITLE_FORMAT" must contain one placeholder "%s".'
